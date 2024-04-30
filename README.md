@@ -1,0 +1,1 @@
+This project uses JS to provide the information about pokemons.

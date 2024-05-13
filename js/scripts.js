@@ -1,9 +1,18 @@
 let pokemonList = [
-0
+  { name: 'Charizard', height: 1.7, types: ['fire', 'flying'], weight: 90.5 },
+  { name: 'Blastoise', height: 1.6, types: ['water'], weight: 85.5 },
+  { name: 'Ninetales', height: 1.1, types: ['fire'], weight: 19.9 }
 ];
 
-let pokemonListarray = [
-  { name: 'Charizard', height: '1.7 m', types: 'Flame', Weight: '90.5 kg'},
-  { name: 'Blastoise', height: '1.6 m', types: 'Shell', Weight: '85.5 kg'},
-  { name: 'Ninetales', height: 1'.1 m', types: 'Fox ', Weight: '19.9 kg'},
-];
+for (let i = 0; i < pokemonList.length; i++) {
+  if (pokemonList[i].height < 1.5) {
+    console.log("Wow, that’s big!");
+  }
+  else if (pokemonList[i].height > 0.5 && pokemonList.height < 1.5) {
+    console.log("average pokemon");
+  }
+  else (pokemonList[i].height > 0.5); {
+    console.log("Wow, so small!");
+  }
+  document.write(pokemonList[i].name + " (height: " + pokemonList[i].height + ") <p></p>");
+}

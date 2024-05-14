@@ -4,15 +4,25 @@ let pokemonList = [
   { name: 'Ninetales', height: 1.1, types: ['fire'], weight: 19.9 }
 ];
 
+// Set thresholds for big and small Pokémon
+const bigHeightThreshold = 1.5;
+const smallHeightThreshold = 0.5;
+
 for (let i = 0; i < pokemonList.length; i++) {
-  if (pokemonList[i].height < 1.5) {
-    console.log("Wow, that’s big!");
+  let message = "";
+  if (pokemonList[i].height > bigHeightThreshold) {
+    // Pokémon is considered big if its height is greater than the bigHeightThreshold
+    message = "Wow, that's big!";
   }
-  else if (pokemonList[i].height > 0.5 && pokemonList.height < 1.5) {
-    console.log("average pokemon");
+  else if (pokemonList[i].height <= bigHeightThreshold && pokemonList[i].height > smallHeightThreshold) {
+    // Pokémon is considered average if its height is less than or equal to bigHeightThreshold and greater than smallHeightThreshold
+    message = "Average size Pokémon";
   }
-  else (pokemonList[i].height > 0.5); {
-    console.log("Wow, so small!");
+  else {
+     // Pokémon is considered small if its height is less than or equal to smallHeightThreshold
+     message = "Wow, so small!";
   }
-  document.write(pokemonList[i].name + " (height: " + pokemonList[i].height + ") <p></p>");
+
+  // Output the information
+  document.write("<p class='" + (pokemonList[i].height > bigHeightThreshold ? "big" : (pokemonList[i].height <= bigHeightThreshold && pokemonList[i].height > smallHeightThreshold ? "average" : "small")) + "'>" + pokemonList[i].name + " (height: " + pokemonList[i].height + ") - " + message + "</p>");
 }

@@ -22,9 +22,9 @@ let pokemonRepository = (function () {
     if (typeof pokemon === 'object' && 'name' in pokemon
       && 'height' in pokemon && 'types' in pokemon) {
       pokemonList.push(pokemon);
-      return true
+      return true;
     } else {
-      console.log('Pokemn type is not an object or missing required properties');
+      console.log('Pokemon type is not an object or missing required properties');
       return false;
     }
   }
@@ -40,7 +40,6 @@ let pokemonRepository = (function () {
 })();
 
 // Using the getAll method to get the list of Pokemon
-
 pokemonRepository.getAll().forEach(function (pokemon) {
   console.log(pokemon.name + ' is ' + pokemon.height + ' tall.');
 });
@@ -56,21 +55,16 @@ const smallHeightThreshold = 0.5;
 // Using the getAll method to iterate through the Pokemon list
 pokemonRepository.getAll().forEach(function (pokemon) {
   let message = "";
-  if (pokemonList[i].height > bigHeightThreshold) {
-    // Pokémon is considered big if its height is greater than the bigHeightThreshold
+  if (pokemon.height > bigHeightThreshold) {
     message = "Wow, that's big!";
-  }
-  else if (pokemonList[i].height <= bigHeightThreshold && pokemonList[i].height > smallHeightThreshold) {
-    // Pokémon is considered average if its height is less than or equal to bigHeightThreshold and greater than smallHeightThreshold
+  } else if (pokemon.height <= bigHeightThreshold && pokemon.height > smallHeightThreshold) {
     message = "Average size Pokémon";
-  }
-  else {
-    // Pokémon is considered small if its height is less than or equal to smallHeightThreshold
+  } else {
     message = "Wow, so small!";
   }
-}
 
   // Output the information
   document.write("<p class='" + (pokemon.height > bigHeightThreshold ? "big" :
-  (pokemon.height <= bigHeightThreshold && pokemon.height > smallHeightThreshold ? "average" : "small"))
-  + "'>" + pokemon.name + " (height: " + pokemon.height + ") - " + message + "</p>"))
+    (pokemon.height <= bigHeightThreshold && pokemon.height > smallHeightThreshold ? "average" : "small"))
+    + "'>" + pokemon.name + " (height: " + pokemon.height + ") - " + message + "</p>");
+  });

@@ -36,15 +36,23 @@ let pokemonRepository = (function () {
 
   function addListItem(pokemon) {
     // Adds the button with pokemn list
-    let pokemonList = document.querySelector ('.pokemon-list');
+    let pokemonList = document.querySelector('.pokemonlist');
     let listpokemon = document.createElement('li');
     let button = document.createElement('button');
     button.innerText = console.log(pokemon.name);
-    pokemon - list.appendChild(button);
+    pokemonlist.appendChild(button);
     button.classList.add('button-class');
     listpokemon.appendChild(button);
     pokemonlist.appendChild(listpokemon);
+    //event listener to the button
+    button.addEventListener('click', function (event) {
+      console.log(event);
+    });
   };
+
+  function showDetails(pokemon) {
+    console.log(pokemon.name)
+  }
 
   return {
     add: add,

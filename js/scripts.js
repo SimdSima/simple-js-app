@@ -45,7 +45,7 @@ let pokemonRepository = (function () {
     button.classList.add('button-class');
     // Append the list item to the <ul>
     listpokemon.appendChild(button);
-    pokemonlist.appendChild(listpokemon);
+    pokemonList.appendChild(listpokemon);
     //event listener to the button
     button.addEventListener('click', function () {
       showDetails(pokemon);  

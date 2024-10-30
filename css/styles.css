@@ -26,3 +26,15 @@ body {
     color: #303f9f;
     font-weight: bold;
   }
+
+  .button-class {
+    background-color: #e0b354;
+    color: #2b2b2b;
+  }
+
+  .additional-information {
+    display: none;
+  }
+  .additional-information.is-visible {
+    display: block;
+  }

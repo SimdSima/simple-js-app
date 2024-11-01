@@ -39,8 +39,9 @@ let pokemonRepository = (function () {
     button.addEventListener('click', function () {
       showLoadingMessage();
       loadDetails(pokemon).then(function () {
-        showDetails(pokemon);
+        return showDetails(pokemon); // Added return - ensure we wait for showDetails to complete
         // When the button is clicked, show details
+      }).then(() => {
         hideLoadingMessage();
       }).catch(function (error) {
         console.error("Error loading details:", error);
@@ -91,6 +92,14 @@ let pokemonRepository = (function () {
     // Additional code to hide the loading message in the UI can be added here
   }
 
+  function showDetails(pokemon) {
+    return loadDetails(pokemon).then(() => {
+      console.log(pokemon);
+      // Logs details to the console
+      // Additional code to display Pokémon details can be added here
+    });
+  }
+
   // Call loadList after defining all functions
   loadList().then(() => {
     getAll().forEach(pokemon => {
@@ -109,14 +118,6 @@ let pokemonRepository = (function () {
 })();
 
 console.log(pokemonRepository.getAll());
-
-function showDetails(pokemon) {
-  loadDetails(pokemon).then(() => {
-    console.log(pokemon);
-    // Logs details to the console
-    // Additional code to display Pokémon details can be added here
-  });
-}
 
 pokemonRepository.loadList().then(function () {
   // Now the data is loaded!

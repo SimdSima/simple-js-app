@@ -25,6 +25,15 @@ p {
   transition-duration: 0.5s;
   cursor: pointer;
   border: 2px solid green;
+  border-radius: 15px;
+  width: 100%;
+  transition: transform 0.3s;
+  will-change: transform;
+}
+
+.button-class:hover {
+  background-color: var(--button-hover-color);
+  transform: scale(105%);
 }
 
 .additional-information {
@@ -87,4 +96,12 @@ p {
 
 .modal p {
   margin-bottom: 0;
+}
+
+.pokemonlist {
+  list-style: none;
+  width: 80%;
+  display: grid ;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
 }

@@ -71,7 +71,7 @@ let pokemonRepository = (function () {
         let pokemon = {
           name: item.name,
           detailsUrl: item.url,
-  
+
         };
         add(pokemon);
       });
@@ -111,8 +111,10 @@ let pokemonRepository = (function () {
   function hideLoadingMessage() {
     console.log("Loading complete.");
     // Additional code to hide the loading message in the UI can be added here
-    //let message = document.querySelector('.loading-message');
-    //message.remove();
+    let message = document.querySelector('.loading-message');
+    if (message) {
+      message.remove(); // Remove the loading message from the DOM
+    }
   }
 
   //Brings up details modal about clicked pokemon
@@ -132,8 +134,8 @@ let pokemonRepository = (function () {
 
     let image = document.createElement('img');
     image.setAttribute('src', img);
-    image.setAttribute('width', '65%');
-    image.setAttribute('height', '65%');
+    image.setAttribute('width', '100%');
+    image.setAttribute('height', '100%');
 
     // Add the new modal content
     let closeButtonElement = document.createElement('button');
@@ -171,7 +173,7 @@ let pokemonRepository = (function () {
   let dialogPromiseReject; // Declare the variable at the top
 
   function hideModal() {
-    let modalContainer = document.querySelector('.modal-container');
+    let modalContainer = document.querySelector('#modal-container');
     modalContainer.classList.remove('is-visible');
 
     if (dialogPromiseReject) {
@@ -212,14 +214,6 @@ let pokemonRepository = (function () {
       dialogPromiseReject = reject;
     });
   }
-
-  document.querySelector('#modal-container').addEventListener('click', () => {
-    showDialog('Confirm action', 'Are you sure you want to do this?').then(function () {
-      alert('confirmed!');
-    }, () => {
-      alert('not confirmed');
-    });
-  });
 
   // Call loadList after defining all functions
   loadList().then(() => {

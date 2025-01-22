@@ -1,7 +1,7 @@
 let pokemonRepository = (function () {
   let pokemonList = [];
   // Initializes an empty list to store Pokémon
-  let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
+  let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=1500';
   // The API URL to get the first 150 Pokémon
 
   //Adds pokemon in repository
@@ -29,7 +29,7 @@ let pokemonRepository = (function () {
     let listItem = document.createElement('li');
     let button = document.createElement('button');
     // This will set the Pokémon name on the button
-    button.innerText = pokemon.name;
+    button.innerText = pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1);
     button.classList.add('button-class');
     // Append the list item to the <ul>
     pokemonList.appendChild(listItem);
@@ -52,7 +52,7 @@ let pokemonRepository = (function () {
 
   function showDetails(pokemon) {
     // Extracting the necessary details from the pokemon object
-    let title = pokemon.name;
+    let title = `Name: ${pokemon.name}`;
     let text = `Height: ${pokemon.height}`;
     let img = pokemon.imageUrl;
 
@@ -62,11 +62,11 @@ let pokemonRepository = (function () {
 
   //Fetches list of pokemons from API
   function loadList() {
-    // showLoadingMessage();
+    showLoadingMessage();
     return fetch(apiUrl).then(function (response) {
       return response.json();
     }).then(function (json) {
-      hideLoadingMessage();
+    
       json.results.forEach(function (item) {
         let pokemon = {
           name: item.name,
@@ -75,9 +75,10 @@ let pokemonRepository = (function () {
         };
         add(pokemon);
       });
+      hideLoadingMessage(); // Hide loading message after processing
     }).catch(function (e) {
       console.error(e);
-      hideLoadingMessage();
+      hideLoadingMessage(); // Hide loading message on error
     })
   }
 
@@ -90,6 +91,7 @@ let pokemonRepository = (function () {
       .then(details => {
         // Now we add the details to the item
         item.imageUrl = details.sprites.front_default;
+        item.name = details.name;
         item.height = details.height;
         item.types = details.types;
       }).catch(error => {
@@ -144,6 +146,7 @@ let pokemonRepository = (function () {
     closeButtonElement.addEventListener('click', hideModal);
 
     modal.appendChild(closeButtonElement);
+    modal.appendChild(name);
     modal.appendChild(height);
     modal.appendChild(image);
     modalContainer.appendChild(modal);
